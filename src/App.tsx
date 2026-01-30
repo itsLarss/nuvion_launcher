@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play, Settings, User, Download, ChevronDown, Users, MessageCircle, Plus, Upload, RefreshCw, Bell, Search, Check, UserPlus, Trash2, Edit3, Image as ImageIcon, LogOut, Palette } from 'lucide-react';
+import './App.css';
 
 interface Version {
     id: string;
@@ -40,7 +41,7 @@ interface NewsItem {
     tag: 'update' | 'announcement' | 'event';
 }
 
-const NuvionLauncher = () => {
+function App() {
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
     const [showVersionSelector, setShowVersionSelector] = useState(false);
     const [activeTab, setActiveTab] = useState<'home' | 'versions' | 'friends' | 'skins' | 'accounts' | 'settings'>('home');
@@ -779,107 +780,9 @@ const NuvionLauncher = () => {
                 </div>
             </div>
 
-            <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        
-        * {
-          font-family: 'Inter', sans-serif;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
 
-        @keyframes pulse-slow {
-          0%, 100% { 
-            opacity: 0.3; 
-            transform: scale(1); 
-          }
-          50% { 
-            opacity: 0.5; 
-            transform: scale(1.05); 
-          }
-        }
-
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .animate-pulse-slow {
-          animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-
-        .delay-1000 {
-          animation-delay: 2s;
-        }
-
-        .delay-2000 {
-          animation-delay: 4s;
-        }
-
-        /* Custom Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar,
-        ::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track,
-        ::-webkit-scrollbar-track {
-          background: rgba(15, 23, 42, 0.3);
-          border-radius: 10px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb,
-        ::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, rgba(34, 211, 238, 0.3), rgba(59, 130, 246, 0.3));
-          border-radius: 10px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover,
-        ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, rgba(34, 211, 238, 0.5), rgba(59, 130, 246, 0.5));
-        }
-
-        /* Line clamp utility */
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        /* Smooth transitions */
-        button, input, div, select {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Range input styling */
-        input[type="range"]::-webkit-slider-thumb {
-          appearance: none;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: linear-gradient(to right, #22d3ee, #3b82f6);
-          cursor: pointer;
-          box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: linear-gradient(to right, #22d3ee, #3b82f6);
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-        }
-      `}</style>
         </div>
     );
-};
+}
 
-export default NuvionLauncher;
+export default App;

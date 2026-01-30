@@ -1,11 +1,18 @@
+/* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* Tailwind CSS Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Base Styles */
 * {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom Animations */
 @keyframes pulse-slow {
   0%, 100% {
     opacity: 0.3;
@@ -18,8 +25,12 @@
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-pulse-slow {
@@ -62,7 +73,7 @@
   background: linear-gradient(to bottom, rgba(34, 211, 238, 0.5), rgba(59, 130, 246, 0.5));
 }
 
-/* Line clamp utility */
+/* Line Clamp Utility */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -70,12 +81,15 @@
   overflow: hidden;
 }
 
-/* Smooth transitions */
-button, input, div, select {
+/* Smooth Transitions */
+button,
+input,
+div,
+select {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Range input styling */
+/* Range Input Styling */
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
@@ -94,4 +108,16 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   border: none;
   box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
 }
