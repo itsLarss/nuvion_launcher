@@ -57,9 +57,9 @@ interface NewsItem {
     id: number;
     title: string;
     description: string;
-    tag: string;          // kommt aus DB, wir mappen unten auf update/announcement/event wenn nötig
-    created_at: string;   // ISO timestamp
-    image?: string;
+    tag: 'update' | 'announcement' | 'event';
+    created_at: string;
+    image_url?: string;
 }
 
 
@@ -614,7 +614,12 @@ function App() {
                                                             {new Date(item.created_at).toLocaleString()}
                                                         </span>
                                                     </div>
-
+                                                    {item.image_url && (
+                                                        <img
+                                                            src="https://api.eldorionmc.de/uploads/news/News.png"
+                                                            className="w-full h-32 object-cover"
+                                                        />
+                                                    )}
                                                     <h3 className="font-bold mb-2 group-hover:text-cyan-400 transition-colors">
                                                         {item.title}
                                                     </h3>
