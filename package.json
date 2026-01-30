@@ -10,10 +10,11 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tauri-apps/api": "^2",
+    "@tauri-apps/api": "^2.9.1",
     "@tauri-apps/plugin-opener": "^2",
     "framer-motion": "^12.29.2",
     "lucide-react": "^0.563.0",
+    "prismarine-auth": "^2.7.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

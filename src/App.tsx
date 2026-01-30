@@ -22,6 +22,7 @@ import {
     Users
 } from 'lucide-react';
 import './App.css';
+import { invoke } from "@tauri-apps/api/core";
 
 interface Version {
     id: string;
@@ -104,7 +105,30 @@ function App() {
         localStorage.setItem('nuvion:theme', theme);
     }, [theme]);
 
+    const DISCORD_CLIENT_ID = "1466693722111606794";
 
+    useEffect(() => {
+        invoke("discord_connect", { clientId: DISCORD_CLIENT_ID }).catch(() => {});
+    }, []);
+
+    useEffect(() => {
+        const map: Record<string, { state: string; details: string }> = {
+            home: { state: "Im Launcher", details: "Hauptmenü" },
+            news: { state: "Im Launcher", details: "Schaut News" },
+            friends: { state: "Im Launcher", details: "Verwaltet Freunde" },
+            versions: { state: "Im Launcher", details: "Versionsübersicht" },
+            accounts: { state: "Im Launcher", details: "Accounts" },
+            settings: { state: "Im Launcher", details: "Einstellungen" },
+            skins: { state: "Im Launcher", details: "Skin Changer" },
+        };
+
+        const p = map[activeTab] ?? { state: "Im Launcher", details: "—" };
+
+        invoke("discord_set_activity", {
+            state: p.state,
+            details: p.details,
+        }).catch(() => {});
+    }, [activeTab]);
 
     const versions: Version[] = [
         {id: '1.20.4', name: '1.20.4', type: 'vanilla', releaseDate: '2023-12-07'},
@@ -429,10 +453,7 @@ function App() {
                     <div
                         className="h-16 bg-slate-950/60 bg-[rgb(var(--surface-1))]/70 border border-[rgb(var(--border-soft))] border-b border-cyan-500/20 flex items-center justify-between px-6">
                         <div className="flex items-center gap-3">
-                            <h1 className="text-xl text-white font-bold bg-gradient-to-r style={{
-  backgroundImage: `linear-gradient(to right, rgb(var(--accent-from)), rgb(var(--accent-to)))`
-}}
- bg-clip-text text-transparent">
+                            <h1 className="text-xl text-white font-bold bg-gradient-to-r style={{backgroundImage: `linear-gradient(to right, rgb(var(--accent-from)), rgb(var(--accent-to)))`}}bg-clip-text text-transparent">
                                 Nuvion Client
                             </h1>
                             <span
@@ -457,9 +478,7 @@ function App() {
                             <div
                                 className="absolute top-1 right-1 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                         </button>
-
                     </div>
-
                     {/* Content Area */}
                     <div className="flex-1 overflow-y-auto p-6">
                         {activeTab === 'home' && (
@@ -472,10 +491,7 @@ function App() {
                                             className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 bg-[rgb(var(--surface-1))]/70 border border-[rgb(var(--border-soft))] rounded-2xl p-6 border border-cyan-500/20 shadow-2xl shadow-cyan-500/5">
                                             <div className="flex items-center justify-between mb-6">
                                                 <div>
-                                                    <h2 className="text-2xl font-bold mb-1 text-white bg-gradient-to-r style={{
-  backgroundImage: `linear-gradient(to right, rgb(var(--accent-from)), rgb(var(--accent-to)))`
-}}
- bg-clip-text text-transparent">
+                                                    <h2 className="text-2xl font-bold mb-1 text-white bg-gradient-to-r style={{backgroundImage: `linear-gradient(to right, rgb(var(--accent-from)), rgb(var(--accent-to)))`}}bg-clip-text text-transparent">
                                                         Quick Launch
                                                     </h2>
                                                     <p className="text-slate-300 text-sm">Select version and start
@@ -510,10 +526,9 @@ function App() {
                                                                     <span
                                                                         className="font-medium text-sm">{version.name}</span>
                                                                 </div>
-                                                                <span
-                                                                    className={`text-xs px-3 py-1 rounded-full bg-gradient-to-r ${getVersionBadgeColor(version.type)} opacity-80`}>
-                                  {version.type}
-                                </span>
+                                                                <span className={`text-xs px-3 py-1 rounded-full bg-gradient-to-r ${getVersionBadgeColor(version.type)} opacity-80`}>
+                                                                    {version.type}
+                                                                </span>
                                                             </button>
                                                         ))}
                                                     </div>
