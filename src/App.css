@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+  color: white;
+}
+
+.glass {
+  background: rgba(30, 30, 60, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 200, 255, 0.2);
+  border-radius: 16px;
+}
